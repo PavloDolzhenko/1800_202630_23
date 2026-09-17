@@ -66,7 +66,7 @@ elmo-hikes/
 
 
 ## Contributors
-- **Ron Mark Daniel** - BCIT CST Student with a passion for problem solving and learning new things. Fun fact: Loves watching k-dram
+- **Ron Mark Daniel** - BCIT CST Student with a passion for problem solving and learning new things. Fun fact: Loves watching k-dramas!
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
 ---
