@@ -68,6 +68,7 @@ spot-the-bot/
 
 
 ## Contributors
+- **William Chiu** - BCIT CST student who enjoys problem solving and learning new technologies. Fun fact: I enjoy watching and learning about baseball.
 - **Ron Mark Daniel** - BCIT CST Student with a passion for problem solving and learning new things. Fun fact: Loves watching k-dramas!
 - **Pavlo Dolzhenko** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: I like game development.
 
