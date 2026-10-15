@@ -62,6 +62,86 @@ body {
 }
 
 
+/* WELCOME / HERO SECTION
+   Ron Mark - Editing parts of the bootstrap template to match with everything else */
+
+.hero-section{
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--icon-color);
+    position: relative;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-section .material-symbols-outlined{
+    font-size: 5em; 
+}
+
+.hero-section button{
+    background-color: var(--icon-color);
+    border-color: var(--icon-active);
+}
+
+/* Testimonials Section
+   Ron Mark -  */
+
+.surveyHeader{
+    text-align: center;
+    font-size:large;
+}
+
+.testimonial-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.testimonial-slide {
+    text-align: center;
+    padding: 20px;
+}
+.testimonial-slide img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+.carousel-control-prev,
+.carousel-control-next {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--icon-active);
+}
+
+.carousel-item span{
+    font-size: 5em;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-center button{
+    background-color: var(--icon-color);
+    border-color: var(--icon-active);
+}
+
+.text-center button:hover{
+    background-color: var(--icon-active);
+    border-color: var(--icon-color);
+    color:#ffffff;
+}
+
+.text-center visually-hidden{
+    display: content;
+}
+
+
 /* BOTTOM NAVBAR
    Pavlo - this styles the two round buttons at the bottom.*/
 
