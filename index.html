@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>Spot the Bot</title>
-    <meta name="comp1800 template" content="My 1800 App">
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="comp1800 template" content="My 1800 App">
 
-    <!-- Other libraries go here -->
+    <title>Spot the Bot</title>
+
     <!-- IMPORTANT FOR RON TO READ -->
     <!-- This loads the Google icons. To change an icon, just change the word
          inside a <span class="material-symbols-outlined"> (e.g. "home" -> "house").
@@ -17,19 +16,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
 
-    <!-- Ron, this is our own CSS file. All navbar styles live in here. -->
+    <!-- Ron, this is our own CSS file. All our styles (navbars, hero, testimonials) live in here. -->
     <link rel="stylesheet" href="./styles/style.css">
-
-    <!-- Link to styles of your own -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
-
 </head>
 
 <body>
-
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
 
     <!-- Top navbar -->
     <!-- Pavlo - this is the grey curved bar at the top of every screen. -->
@@ -52,71 +43,84 @@
     <!-- Pavlo - the Welcome section and Call to Action go in here (other team tasks). -->
     <main class="page-content">
 
-    <!-- Ron Mark - Welcome / Hero Section -->
+        <!-- Ron Mark - Welcome / Hero section (uses a Bootstrap template) -->
+        <section class="px-4 my-5 text-center hero-section">
 
-    <!-- Ron Mark, Using bootstrap template for welcome section -->
-    <section class="px-4 my-5 text-center hero-section">
-        <span id="botImage" class="material-symbols-outlined" >smart_toy</span>
-    <!-- "Title of the web app, using icon as a logo" -->
-        <h1 class="display-5 fw-bold text-body-emphasis">Spot the Bot</h1>
-        <div class="col-lg-6 mx-auto">
-    <!-- Description of the web app taken from github repo -->
-            <p class="lead mb-4">Sharpen media literacy in an age of increasingly convincing AI-generated content, turning a serious skill spotting deepfakes, synthetic text, and AI imagery into a quick, replayable game rather than a lecture.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"> <button type="button"
-                    class="btn btn-primary btn-lg px-4 gap-3">Get Started</button> </div>
-        </div>
-    </section>
+            <!-- Title of the web app, using the robot icon as a logo -->
+            <span id="botImage" class="material-symbols-outlined">smart_toy</span>
+            <h1 class="display-5 fw-bold text-body-emphasis">Spot the Bot</h1>
 
-    <!-- Added a carousel to the homepage -->
+            <div class="col-lg-6 mx-auto">
+                <!-- Description of the web app, taken from the GitHub repo -->
+                <p class="lead mb-4">Sharpen media literacy in an age of increasingly convincing AI-generated content, turning a serious skill spotting deepfakes, synthetic text, and AI imagery into a quick, replayable game rather than a lecture.</p>
 
-    <h2 class="surveyHeader">How do some people feel about generative AI?</h2>
-    <h3 class="surveyHeader">Check out some survey responses below.</h3>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <!-- container for all carousel slides -->
-                    <div class="carousel-inner">
-                        <!-- first carousel slide that user will see -->
-                        <div class="carousel-item active">
-                            <div class="testimonial-slide">
-                                <span class="material-symbols-outlined">person</span>
-                                <p>"I think AI can be a really useful tool, but it can also potentially cause harm, especially for older generations or people who aren’t very familiar with how AI works. It can be difficult to tell what’s real and what’s AI-generated, which could lead to misinformation and the spread of false news. I think AI is helpful, but we also need to be careful and make sure people know how to recognize and verify the information they see."</p>
-                                <p><strong>Survey Response</strong>, Student at BCIT</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="testimonial-slide">
-                                <span class="material-symbols-outlined">person</span>
-                                <p>"Clutch for school but annoying when trying to enjoy life"</p>
-                                <p><strong>Survey Response</strong>, Anonymous Student</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="testimonial-slide">
-                                <span class="material-symbols-outlined">person</span>
-                                <p>"I think AI is very helpful in every way, can be slightly negative if used inappropriately."</p>
-                                <p><strong>Survey Response</strong>, Anonymous Student</p>
-                            </div>
-                        </div>
-                        <!-- Can add more testimonial items as needed -->
-                    </div>
-                <!-- carousel slide controls -->
-                <div class="text-center">
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                    </button>
+                <div class="text-button">
+                    <button type="button" class="GetStarted"><b>Get Started</b></button>
                 </div>
+            </div>
+
+        </section>
+
+
+        <!-- Ron Mark - Testimonials: survey responses shown in a carousel -->
+        <h2 class="surveyHeader">How do some people feel about generative AI?</h2>
+        <h3 class="surveyHeader">Check out some survey responses below.</h3>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                        <!-- Container for all carousel slides -->
+                        <div class="carousel-inner">
+
+                            <!-- First slide the user will see -->
+                            <div class="carousel-item active">
+                                <div class="testimonial-slide">
+                                    <span class="material-symbols-outlined">person</span>
+                                    <p>"I think AI can be a really useful tool, but it can also potentially cause harm, especially for older generations or people who aren’t very familiar with how AI works. It can be difficult to tell what’s real and what’s AI-generated, which could lead to misinformation and the spread of false news. I think AI is helpful, but we also need to be careful and make sure people know how to recognize and verify the information they see."</p>
+                                    <p><strong>Survey Response</strong>, Student at BCIT</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="testimonial-slide">
+                                    <span class="material-symbols-outlined">person</span>
+                                    <p>"Clutch for school but annoying when trying to enjoy life"</p>
+                                    <p><strong>Survey Response</strong>, Anonymous Student</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="testimonial-slide">
+                                    <span class="material-symbols-outlined">person</span>
+                                    <p>"I think AI is very helpful in every way, can be slightly negative if used inappropriately."</p>
+                                    <p><strong>Survey Response</strong>, Anonymous Student</p>
+                                </div>
+                            </div>
+
+                            <!-- Can add more testimonial items as needed -->
+                        </div>
+
+                        <!-- Previous / Next slide buttons -->
+                        <div class="text-center carousel-controls">
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
+
     </main>
 
 
@@ -126,7 +130,7 @@
 
         <!-- Pavlo - this hidden checkbox is the "open/closed" switch for the menu.
              Clicking the round button (the <label> below) ticks it, and the CSS
-             shows the Home / Search / Activities buttons. No JavaScript needed. -->
+             shows the Home / Search / Activities / Add Friend buttons. No JavaScript needed. -->
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
         <!-- Pavlo - this is the round button bottom-left. It opens and closes the menu. -->
@@ -134,7 +138,7 @@
             <span class="material-symbols-outlined">ads_click</span>
         </label>
 
-        <!-- Pavlo - these are the 3 buttons that pop out when the menu is open. -->
+        <!-- Pavlo - these are the 4 buttons that pop out when the menu is open. -->
         <div class="menu-items">
 
             <!-- Pavlo - this button leads to the Home page -->
@@ -172,11 +176,7 @@
     </nav>
 
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
+    <!-- Our JavaScript (this is also what loads Bootstrap) -->
     <script type="module" src="./src/main.js"></script>
 
 </body>
