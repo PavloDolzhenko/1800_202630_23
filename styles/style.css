@@ -144,40 +144,65 @@ body {
     text-align: center;
 }
 
-/* The person icon on each slide */
-.testimonial-slide .material-symbols-outlined {
-    font-size: 5em;
+/* WELCOME / HERO SECTION
+   Ron Mark - Editing parts of the bootstrap template to match with everything else */
+
+.hero-section{
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--icon-color);
 }
 
-/* Not used yet (the slides show an icon, not an <img>) */
+.hero-section .material-symbols-outlined{
+    font-size: 5em; 
+}
+
+.hero-section button{
+    background-color: var(--icon-color);
+    border-color: var(--icon-active);
+}
+
+/* Testimonials Section
+   Ron Mark -  */
+
+.surveyHeader{
+    text-align: center;
+    font-size:large;
+}
+
+.testimonial-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.testimonial-slide {
+    text-align: center;
+    padding: 20px;
+}
 .testimonial-slide img {
+    border-radius: 50%;
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
-    border-radius: 50%;
 }
-
-/* The round Previous / Next arrow buttons on the carousel.
-   Only targets .carousel-controls so other buttons (like Get Started) aren't affected. */
-.carousel-controls button {
+.carousel-control-prev,
+.carousel-control-next {
     width: 40px;
     height: 40px;
-    background-color: var(--icon-color);
-    border-color: var(--icon-active);
-    border-radius: 70%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
 }
-
-.carousel-controls button:hover {
-    color: #ffffff;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
     background-color: var(--icon-active);
-    border-color: var(--icon-color);
+}
+
+.carousel-item span{
+    font-size: 5em;
 }
 
 
-/*
-   6. BOTTOM NAVBAR
-   Pavlo - the two round buttons at the bottom
-*/
+/* BOTTOM NAVBAR
+   Pavlo - this styles the two round buttons at the bottom.*/
 
 /* Pavlo - the shared look for BOTH round buttons (menu + chat) */
 .circle-btn {
