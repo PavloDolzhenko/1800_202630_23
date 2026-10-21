@@ -28,7 +28,7 @@ h1, h3{
 
 .activity-card{
     margin-top: 1em;
-    width: 80vw;
+    width: 50vw;
     background-color: var(--icon-color);
     border: var(--nav-border);
     border-radius: 1em;
