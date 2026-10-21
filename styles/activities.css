@@ -28,7 +28,7 @@ h1, h3{
 
 .activity-card{
     margin-top: 1em;
-    width: 80vw;
+    width: 50vw;
     background-color: var(--icon-color);
     border: var(--nav-border);
     border-radius: 1em;
@@ -39,4 +39,30 @@ h1, h3{
     font-size: 4em;
     align-self: center;
     margin: 0.4em;
+}
+
+#game-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-layout > h2{
+    margin-bottom: 1em;
+}
+
+#game-layout > h3{
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#game-layout > a{
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-decoration: underline;
+}
+
+.card-title{
+    text-align: center;
 }
