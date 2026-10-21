@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spot the Bot</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Other libraries go here -->
+    <!-- IMPORTANT FOR RON TO READ -->
+    <!-- This loads the Google icons. To change an icon, just change the word
+         inside a <span class="material-symbols-outlined"> (e.g. "home" -> "house").
+         Browse icon names at https://fonts.google.com/icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
+
+    <!-- Ron, this is our own CSS file. All navbar styles live in here. -->
+    <link rel="stylesheet" href="./styles/skeleton.css">
+
+    <!-- Link to styles of your own -->
+    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+
+</head>
+<body>
+
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- Top navbar -->
+    <!-- Pavlo - this is the grey curved bar at the top of every screen. -->
+    <header class="top-nav">
+
+        <!-- Pavlo - this button leads to the Settings page (gear icon, top-left) -->
+        <a href="settings.html" class="icon-btn" aria-label="Settings">
+            <span class="material-symbols-outlined">settings</span>
+        </a>
+
+        <!-- Pavlo - this button leads to the Profile page (person icon, top-right) -->
+        <a href="profile.html" class="icon-btn" aria-label="Profile">
+            <span class="material-symbols-outlined">person</span>
+        </a>
+
+    </header>
+
+     <!-- Bottom navbar -->
+    <!-- Pavlo - this is the bottom part: a round menu button on the left and a round Chat button on the right. -->
+    <nav class="bottom-nav">
+
+        <!-- Pavlo - this hidden checkbox is the "open/closed" switch for the menu.
+             Clicking the round button (the <label> below) ticks it, and the CSS
+             shows the Home / Search / Activities buttons. No JavaScript needed. -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+        <!-- Pavlo - this is the round button bottom-left. It opens and closes the menu. -->
+        <label for="menu-toggle" class="circle-btn menu-btn" aria-label="Open menu">
+            <span class="material-symbols-outlined">ads_click</span>
+        </label>
+
+        <!-- Pavlo - these are the 3 buttons that pop out when the menu is open. -->
+        <div class="menu-items">
+
+            <!-- Pavlo - this button leads to the Home page -->
+            <a href="index.html" class="menu-item item-home">
+                <span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+
+            <!-- Pavlo - this button leads to the Search page -->
+            <a href="search.html" class="menu-item item-search">
+                <span class="material-symbols-outlined">search</span>
+                Search
+            </a>
+
+            <!-- Pavlo - this button leads to the Activities page (the AI-or-Real quizzes) -->
+            <a href="activities.html" class="menu-item item-activities">
+                <span class="material-symbols-outlined">sports_esports</span>
+                Activities
+            </a>
+
+            <!-- Pavlo - this button leads to the Add Friend page -->
+            <a href="add-friend.html" class="menu-item item-add-friend">
+                <span class="material-symbols-outlined">person_add</span>
+                Add Friend
+            </a>
+
+        </div>
+
+        <!-- Pavlo - this button leads to the Chat page (round button bottom-right) -->
+        <a href="chat.html" class="circle-btn chat-btn" aria-label="Chat">
+            <span class="material-symbols-outlined">forum</span>
+            <small>Chat</small>
+        </a>
+
+    </nav>
+
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+
+</body>
+
+</html>
