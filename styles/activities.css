@@ -1,0 +1,68 @@
+:root {
+    --nav-bg: #e0e0e0;        /* Pavlo - background of the top bar and round buttons */
+    --nav-border: #9e9e9e;    /* Pavlo - the thin outline around them */
+    --icon-color: #616161;    /* Pavlo - colour of the icons */
+    --icon-active: #000000;   /* Pavlo - colour when you hover a button */
+    --page-bg: #ffffff;       /* Pavlo - the page background */
+}
+
+h1, h3{
+    text-align: center;
+}
+
+#controller-icon{
+    font-size: 5em;
+    text-align: center;
+    padding: 0.5em;
+    background-color: var(--icon-color);
+    border-radius: 25%;
+    margin-bottom: 0.2em;
+}
+
+#activity-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.activity-card{
+    margin-top: 1em;
+    width: 50vw;
+    background-color: var(--icon-color);
+    border: var(--nav-border);
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.card-icons{
+    font-size: 4em;
+    align-self: center;
+    margin: 0.4em;
+}
+
+#game-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-layout > h2{
+    margin-bottom: 1em;
+}
+
+#game-layout > h3{
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#game-layout > a{
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-decoration: underline;
+}
+
+.card-title{
+    text-align: center;
+}
