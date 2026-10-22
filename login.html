@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spot the Bot</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google icons (same as every other page) -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
+
+    <!-- Pavlo : Ron skeleton.css has the navbar, login.css has the login / sign up styles. -->
+    <link rel="stylesheet" href="./styles/skeleton.css">
+    <link rel="stylesheet" href="./styles/login.css">
+
+</head>
+<body>
+
+    <!-- Top navbar -->
+    <!-- Pavlo : Ron this is the same grey curved bar, but here it only has a Back to Home button
+         (no Settings / Profile because the person isn't logged in yet). -->
+    <header class="top-nav">
+
+        <a href="index.html" class="icon-btn back-home" aria-label="Back to Home">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <small>Home</small>
+        </a>
+
+    </header>
+
+    <!-- Pavlo : Ron this is our login section. -->
+    <main class="page-content">
+    <div class="auth-card">
+
+        <span class="material-symbols-outlined auth-logo">smart_toy</span>
+
+        <!-- Pavlo : Ron this box shows errors like "Wrong email or password." It stays hidden until login.js shows it. -->
+        <div id="authAlert" class="alert alert-dark d-none" role="alert"></div>
+
+        <!-- Log In -->
+        <div id="loginView">
+            <h1>Log In</h1>
+            <p class="auth-subtitle">Welcome back! Log in to keep spotting bots.</p>
+
+            <form id="loginForm">
+                <label for="loginEmail" class="form-label">Email</label>
+                <input type="email" id="loginEmail" class="form-control" autocomplete="email" required>
+
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" id="loginPassword" class="form-control" autocomplete="current-password" required>
+
+                <button type="submit" class="auth-btn">Log In</button>
+            </form>
+
+            <!-- Pavlo : Ron this button swaps to the Sign Up form below. -->
+            <p class="auth-switch">Don't have an account?</p>
+            <button type="button" id="toSignup" class="auth-btn auth-btn-outline">Sign Up</button>
+        </div>
+
+        <!-- Sign Up (hidden until "Sign Up" is clicked) -->
+        <!-- Pavlo : Ron this is our sign up section. -->
+        <div id="signupView" class="d-none">
+            <h1>Sign Up</h1>
+            <p class="auth-subtitle">Create an account to start playing.</p>
+
+            <form id="signupForm">
+                <div class="row g-2">
+                    <div class="col">
+                        <label for="signupFirstName" class="form-label">First Name</label>
+                        <input type="text" id="signupFirstName" class="form-control" autocomplete="given-name" required>
+                    </div>
+                    <div class="col">
+                        <label for="signupLastName" class="form-label">Last Name</label>
+                        <input type="text" id="signupLastName" class="form-control" autocomplete="family-name" required>
+                    </div>
+                </div>
+
+                <label for="signupEmail" class="form-label">Email</label>
+                <input type="email" id="signupEmail" class="form-control" autocomplete="email" required>
+
+                <label for="signupPassword" class="form-label">Password</label>
+                <input type="password" id="signupPassword" class="form-control" autocomplete="new-password"
+                    minlength="6" required>
+                <small class="form-text">At least 6 characters.</small>
+
+                <button type="submit" class="auth-btn">Create Account</button>
+            </form>
+
+            <!-- Pavlo : Ron this button swaps back to the Log In form. -->
+            <p class="auth-switch">Already have an account?</p>
+            <button type="button" id="toLogin" class="auth-btn auth-btn-outline">Log In</button>
+        </div>
+
+    </div>
+    </main>
+
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/login.js"></script>
+
+</body>
+
+</html>
