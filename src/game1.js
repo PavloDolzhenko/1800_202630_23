@@ -1,10 +1,10 @@
 import { db, auth } from "./firebaseConfig.js";
-import { collection, addDoc, doc, setDoc} from "firebase/firestore";
+import { collection, addDoc, doc, setDoc, Timestamp} from "firebase/firestore";
 
 let score = 0;
 let wrongAnswers = 0;
 let hasWon = false;
-const startTime = Date.now();
+const startTime = Timestamp.now();
 
 
 
