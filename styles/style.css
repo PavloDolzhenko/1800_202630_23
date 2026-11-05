@@ -22,6 +22,20 @@
     --button-color: #858585;    /* Pavlo - colour of the buttons */
     --icon-active: #000000;   /* Pavlo - colour when you hover a button */
     --page-bg: #ffffff;       /* Pavlo - the page background */
+    --nav-pressed: #d0d0d0;   /* Pavlo - the menu button while the menu is open */
+}
+
+/* Pavlo : Ron these are the DARK MODE colours (same as in skeleton.css).
+   They only switch on when dark mode is turned on in Settings. */
+:root[data-bs-theme="dark"] {
+    --nav-bg: #2a2a2a;
+    --nav-border: #555555;
+    --icon-color: #9e9e9e;
+    --button-color: #6e6e6e;
+    --icon-active: #ffffff;
+    --page-bg: #1f1f1f;
+    --nav-pressed: #3a3a3a;
+    --bs-body-bg: var(--page-bg);   /* Pavlo - makes Bootstrap use our dark grey instead of its blue-ish one */
 }
 
 
@@ -176,6 +190,7 @@ h1 {
 .hero-section button{
     background-color: var(--icon-color);
     border-color: var(--icon-active);
+    color: var(--page-bg);   /* Pavlo - white text normally, dark text in dark mode so it's still readable */
 }
 
 /* Testimonials Section
@@ -324,5 +339,5 @@ h1 {
 /* Pavlo - makes the menu button look "pressed" while the menu is open */
 .menu-toggle:checked ~ .menu-btn {
     color: var(--icon-active);
-    background: #d0d0d0;
+    background: var(--nav-pressed);
 }
