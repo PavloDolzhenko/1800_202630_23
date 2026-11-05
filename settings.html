@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spot the Bot</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google icons (same as every other page) -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
+
+    <!-- Pavlo : Ron skeleton.css has the navbar, settings.css has the settings page styles. -->
+    <link rel="stylesheet" href="./styles/skeleton.css">
+    <link rel="stylesheet" href="./styles/settings.css">
+
+</head>
+<body>
+
+    <!-- Top navbar -->
+    <!-- Pavlo : Ron this is the same grey curved bar, but the Settings button is swapped for a Back button
+         (we're already on Settings, so the gear would just reload the page). -->
+    <header class="top-nav">
+
+        <!-- Pavlo - this button takes you back to the page you were on before (settings.js does that part) -->
+        <a href="index.html" id="backBtn" class="icon-btn back-btn" aria-label="Back">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <small>Back</small>
+        </a>
+
+        <!-- Pavlo - this button leads to the Profile page (person icon, top-right) -->
+        <a href="profile.html" class="icon-btn" aria-label="Profile">
+            <span class="material-symbols-outlined">person</span>
+        </a>
+
+    </header>
+
+    <!-- Pavlo : Ron this is our settings section. -->
+    <main class="page-content">
+    <div class="settings-card">
+
+        <span class="material-symbols-outlined settings-logo">settings</span>
+        <h1>Settings</h1>
+        <p class="settings-subtitle">Change how Spot the Bot looks for you.</p>
+
+        <!-- Appearance -->
+        <h2 class="settings-heading">Appearance</h2>
+
+        <!-- Pavlo : Ron make sure you understand this one, it's the Dark Mode switch.
+             The whole row is a <label>, so clicking anywhere on it flips the switch.
+             The real checkbox is hidden, the .switch under it is the part you actually see.
+             settings.js listens for the flip and turns dark mode on or off. -->
+        <label class="settings-row">
+            <span class="material-symbols-outlined row-icon">contrast</span>
+            <span class="row-text">
+                <strong>Dark Mode</strong>
+                <small>Switches the whole site to dark greys.</small>
+            </span>
+
+            <input type="checkbox" id="darkModeToggle" class="switch-input">
+            <span class="switch">
+                <span class="switch-knob">
+                    <span class="material-symbols-outlined icon-off">light_mode</span>
+                    <span class="material-symbols-outlined icon-on">dark_mode</span>
+                </span>
+            </span>
+        </label>
+
+        <!-- Pavlo : Ron to add a new setting later, copy the whole settings-row above
+             (from <label> to </label>) and change the icon, the text and the id. -->
+
+        <p class="settings-note">More settings coming soon.</p>
+
+    </div>
+    </main>
+
+     <!-- Bottom navbar -->
+    <!-- Pavlo - this is the bottom part: a round menu button on the left and a round Chat button on the right. -->
+    <nav class="bottom-nav">
+
+        <!-- Pavlo - this hidden checkbox is the "open/closed" switch for the menu.
+             Clicking the round button (the <label> below) ticks it, and the CSS
+             shows the Home / Search / Activities / Add Friend buttons. No JavaScript needed. -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+        <!-- Pavlo - this is the round button bottom-left. It opens and closes the menu. -->
+        <label for="menu-toggle" class="circle-btn menu-btn" aria-label="Open menu">
+            <span class="material-symbols-outlined">ads_click</span>
+        </label>
+
+        <!-- Pavlo - these are the 4 buttons that pop out when the menu is open. -->
+        <div class="menu-items">
+
+            <!-- Pavlo - this button leads to the Home page -->
+            <a href="index.html" class="menu-item item-home">
+                <span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+
+            <!-- Pavlo - this button leads to the Search page -->
+            <a href="search.html" class="menu-item item-search">
+                <span class="material-symbols-outlined">search</span>
+                Search
+            </a>
+
+            <!-- Pavlo - this button leads to the Activities page (the AI-or-Real quizzes) -->
+            <a href="activities.html" class="menu-item item-activities">
+                <span class="material-symbols-outlined">sports_esports</span>
+                Activities
+            </a>
+
+            <!-- Pavlo - this button leads to the Add Friend page -->
+            <a href="add-friend.html" class="menu-item item-add-friend">
+                <span class="material-symbols-outlined">person_add</span>
+                Add Friend
+            </a>
+
+        </div>
+
+        <!-- Pavlo - this button leads to the Chat page (round button bottom-right) -->
+        <a href="chat.html" class="circle-btn chat-btn" aria-label="Chat">
+            <span class="material-symbols-outlined">forum</span>
+            <small>Chat</small>
+        </a>
+
+    </nav>
+
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/settings.js"></script>
+
+</body>
+
+</html>
