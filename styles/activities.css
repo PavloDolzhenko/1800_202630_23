@@ -73,3 +73,30 @@ h1, h3{
 .card-title{
     text-align: center;
 }
+
+#resultScreen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#nextBtn{
+    padding: 2em;
+    width: 45%;
+}
+
+#finalScreen{
+    display: flex;
+    height: 30vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+#tryAgainBtn{
+    padding: 2em;
+}
