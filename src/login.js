@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
-// Pavlo : Ron this is the page people go to after they log in or sign up. Change it here if needed.
+// Pavlo : Ron this is the page people go to after they log in or sign up right now. Change it here if needed.
 const redirectUrl = "activities.html";
 
 // Grab the parts of the page we need

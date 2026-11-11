@@ -1,0 +1,100 @@
+/* SETTINGS PAGE
+   Pavlo : Ron these are the styles for settings.html. The colours come from
+   the variables in skeleton.css, so it stays grayscale and works in dark mode too. */
+
+/* Pavlo - the box in the middle that holds all the settings (same look as the login box) */
+.profile-card {
+    max-width: 420px;
+    height: 700px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    background: var(--page-bg);
+    box-shadow: 0px 6px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--icon-color);
+    font-family: Arial, Helvetica, sans-serif;   /* Pavlo - Bootstrap replaces the body font, so Arial is set again here */
+    text-align: center;
+}
+
+.profile-logo {
+    font-size: 48px;
+    color: var(--icon-color);
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    align-items: center;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 100px;
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    background: var(--page-bg);
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+}
+.edit-btn {
+    display: block;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-info input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    background: var(--page-bg);
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    background-color: var(--page-bg);
+    color: var(--icon-color);
+}
+
+.profile-info label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--icon-color);
+}
+
+.save-btn {
+    margin-top: 30px;
+    margin-right: 10px;
+    width: 110px;
+    height: 50px;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 6px;       /* Pavlo - circle */
+    color: var(--icon-color);
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    cursor: pointer;
+}
+.reset-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 110px;
+    height: 50px;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 6px;       /* Pavlo - circle */
+    color: var(--icon-color);
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.save-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.reset-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
