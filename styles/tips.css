@@ -1,0 +1,22 @@
+#tipsCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#tipsCard{
+    gap: 1em;
+    margin: 1%;
+}
+
+#headerCard{
+    padding: 1em;
+}
+
+.cardImage{
+    width: 100%;
+    height: 20em;
+    object-fit: cover;
+}
+
