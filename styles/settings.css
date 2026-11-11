@@ -80,6 +80,21 @@
     font-size: 12px;
 }
 
+/* Pavlo - when two notes are stacked, keep them close together */
+.settings-note + .settings-note {
+    margin-top: 6px;
+}
+
+/* Pavlo - the "Log in" link in the note. Bootstrap makes links blue, this keeps it grey. */
+.settings-note a {
+    color: var(--icon-color);
+    font-weight: bold;
+}
+
+.settings-note a:hover {
+    color: var(--icon-active);
+}
+
 
 /* ON / OFF SWITCH
    Pavlo : Ron this is the same trick as the pop-out menu. The real checkbox is hidden,
