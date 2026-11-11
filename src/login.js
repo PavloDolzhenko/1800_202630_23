@@ -5,7 +5,8 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { getTheme, saveTheme } from "./theme.js";
 
 // Pavlo : Ron this is the page people go to after they log in or sign up right now. Change it here if needed.
 const redirectUrl = "activities.html";
@@ -53,6 +54,22 @@ document.getElementById("toSignup").addEventListener("click", () => showView(sig
 document.getElementById("toLogin").addEventListener("click", () => showView(loginView, signupView));
 
 
+// Pavlo : Ron after someone logs in, this grabs the settings saved on their account (right now just dark mode)
+// so the site looks the way they left it, even on a different computer.
+async function loadSavedSettings(user) {
+    try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const savedTheme = userDoc.data()?.settings?.theme;
+
+        if (savedTheme) {
+            saveTheme(savedTheme);
+        }
+    } catch (error) {
+        console.error(error);   // Pavlo - if this fails they're still logged in, it just keeps this browser's theme
+    }
+}
+
+
 // Pavlo : Ron this runs when the Log In button is clicked.
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();   // Pavlo - stops the page from reloading
@@ -64,7 +81,8 @@ loginForm.addEventListener("submit", async (event) => {
 
     button.disabled = true;
     try {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        await loadSavedSettings(userCredential.user);
         window.location.href = redirectUrl;
     } catch (error) {
         console.error(error);
@@ -96,10 +114,15 @@ signupForm.addEventListener("submit", async (event) => {
         await updateProfile(user, { displayName: firstName + " " + lastName });
 
         // Pavlo - saves a document in Firestore: users/<their user id>
+        // Pavlo : Ron settings is where Settings page choices get saved. It starts with whatever theme
+        // they already had on this browser, so it doesn't suddenly change after they sign up.
         await setDoc(doc(db, "users", user.uid), {
             firstName: firstName,
             lastName: lastName,
             email: email,
+            settings: {
+                theme: getTheme(),
+            },
         });
 
         window.location.href = redirectUrl;

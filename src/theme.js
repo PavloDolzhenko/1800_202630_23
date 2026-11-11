@@ -1,15 +1,20 @@
 // Pavlo : Ron this file is our dark mode. main.js loads it, so it runs on EVERY page
 // (new pages too, as long as they load main.js like skeleton.html does).
 
-// Pavlo - this puts the saved theme on the page. It's "light" unless someone turned dark mode on in Settings.
-// data-bs-theme is Bootstrap's own dark mode switch, and our CSS files use it too to swap to the dark greys.
-export function applyTheme() {
-    const theme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-bs-theme", theme);
+// Pavlo - gives back "dark" or "light". It's "light" unless someone turned dark mode on in Settings.
+export function getTheme() {
+    return localStorage.getItem("theme") || "light";
 }
 
-// Pavlo - the Settings page calls this when the switch is flipped.
-// localStorage remembers it, even after the browser is closed.
+// Pavlo - this puts the saved theme on the page.
+// data-bs-theme is Bootstrap's own dark mode switch, and our CSS files use it too to swap to the dark greys.
+export function applyTheme() {
+    document.documentElement.setAttribute("data-bs-theme", getTheme());
+}
+
+// Pavlo - Settings calls this when the switch is flipped, and login / profile call it when they load
+// the theme saved on someone's account. localStorage remembers it, even after the browser is closed.
+// (Saving it to Firestore happens in settings.js, this file doesn't use Firebase so every page stays fast.)
 export function saveTheme(theme) {
     localStorage.setItem("theme", theme);
     applyTheme();

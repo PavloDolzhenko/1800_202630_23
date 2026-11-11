@@ -1,11 +1,12 @@
-/* SETTINGS PAGE
-   Pavlo : Ron these are the styles for settings.html. The colours come from
+/* PROFILE PAGE
+   Pavlo : Ron these are the styles for profile.html. The colours come from
    the variables in skeleton.css, so it stays grayscale and works in dark mode too. */
 
-/* Pavlo - the box in the middle that holds all the settings (same look as the login box) */
+/* Pavlo - the box in the middle that holds the profile (same look as the login box).
+   min-height instead of height so it can grow when the "Profile saved!" message shows up. */
 .profile-card {
     max-width: 420px;
-    height: 700px;
+    min-height: 700px;
     margin: 0 auto;
     padding: 24px;
     border: 2px solid var(--nav-border);
@@ -33,9 +34,14 @@
     background: var(--page-bg);
     box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
 }
+
+/* Pavlo - the pencil button. background/border none so it's just the icon, not a grey box. */
 .edit-btn {
     display: block;
-    align-items: center;
+    margin: 0 auto 10px;
+    background: none;
+    border: none;
+    color: var(--icon-color);
     cursor: pointer;
 }
 
@@ -50,6 +56,17 @@
     box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
     background-color: var(--page-bg);
     color: var(--icon-color);
+}
+
+/* Pavlo - locked boxes turn grey so you can tell you need to press the pencil first */
+.profile-info input:disabled {
+    background-color: var(--nav-bg);
+}
+
+/* Pavlo - Chrome makes the box glow blue when you click it, this keeps it grey */
+.profile-info input:focus {
+    outline: none;
+    border-color: var(--icon-active);
 }
 
 .profile-info label {
@@ -90,11 +107,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
 }
 .reset-btn span {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+}
+
+/* Pavlo - the Log Out button at the bottom, same grey look as the Sign Up button on the login page */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 240px;
+    height: 45px;
+    margin: 40px auto 0;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    color: var(--icon-color);
+    font-weight: bold;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Pavlo - hover only does something if the button isn't locked */
+.edit-btn:enabled:hover,
+.save-btn:enabled:hover,
+.reset-btn:enabled:hover,
+.logout-btn:enabled:hover {
+    color: var(--icon-active);
+}
+
+/* Pavlo - greys the buttons out while they're locked (not editing yet, or Firebase is still working) */
+.edit-btn:disabled,
+.save-btn:disabled,
+.reset-btn:disabled,
+.logout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

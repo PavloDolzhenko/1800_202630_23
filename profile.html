@@ -13,7 +13,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
 
-    <!-- Pavlo : Ron skeleton.css has the navbar, settings.css has the settings page styles. -->
+    <!-- Pavlo : Ron skeleton.css has the navbar, profile.css has the profile page styles. -->
     <link rel="stylesheet" href="./styles/skeleton.css">
     <link rel="stylesheet" href="./styles/profile.css">
 
@@ -21,11 +21,11 @@
 <body>
 
     <!-- Top navbar -->
-    <!-- Pavlo : Ron this is the same grey curved bar, but the Settings button is swapped for a Back button
-         (we're already on Settings, so the gear would just reload the page). -->
+    <!-- Pavlo : Ron this is the same grey curved bar, but it has a Back button on the left and
+         the Settings gear on the right (we're already on Profile, so the person icon would just reload the page). -->
     <header class="top-nav">
 
-        <!-- Pavlo - this button takes you back to the page you were on before (settings.js does that part) -->
+        <!-- Pavlo - this button takes you back to the page you were on before (profile.js does that part) -->
         <a href="index.html" id="backBtn" class="icon-btn back-btn" aria-label="Back">
             <span class="material-symbols-outlined">arrow_back</span>
             <small>Back</small>
@@ -38,36 +38,59 @@
 
     </header>
 
-    <!-- Pavlo : Ron this is our settings section. -->
+    <!-- Pavlo : Ron this is our profile section. profile.js fills it in from Firestore
+         (users/<their user id>) once Firebase knows who is logged in. -->
     <main class="page-content">
     <div class="profile-card">
         <span class="material-symbols-outlined profile-logo">person</span>
         <h1>Profile</h1>
         <p class="settings-subtitle">Manage your profile information.</p>
         <img src="./images/profile.jpg" alt="Profile Image" class="profile-image">
-        <label for="edit-toggle" class="edit-btn" aria-label="Edit Profile">
+
+        <!-- Pavlo - the pencil. It unlocks the Username box so you can change it.
+             It starts disabled and profile.js turns it on once the profile has loaded. -->
+        <button type="button" id="editBtn" class="edit-btn" aria-label="Edit Profile" disabled>
             <span class="material-symbols-outlined">edit</span>
-        </label>
+        </button>
 
-        <div class="profile-info">
-            <div class="info-item">
-                <label for="username">Username:</label>
-                <input type="text" id="username" value="JohnDoe" enabled>
-            </div>
+        <!-- Pavlo : Ron this box shows messages like "Profile saved!". It stays hidden until profile.js shows it. -->
+        <div id="profileAlert" class="alert alert-dark d-none" role="alert"></div>
 
-            <div class="info-item">
-                <label for="email">Email:</label>
-                <input type="email" id="email" value="johndoe@example.com" enabled>
+        <!-- Pavlo : Ron the inputs are inside a <form> so pressing Enter or the Save button both save.
+             The username rules (3 to 20 characters, letters / numbers / _ only) are on the input itself,
+             so the browser checks them for us before profile.js saves anything. -->
+        <form id="profileForm">
+            <div class="profile-info">
+                <div class="info-item">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Pick a username" autocomplete="username"
+                        minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+"
+                        title="3 to 20 characters. Letters, numbers and _ only." required disabled>
+                </div>
+
+                <!-- Pavlo - email always stays locked. It's the email they log in with, so changing it
+                     needs Firebase to send them a verification email first (we can add that later). -->
+                <div class="info-item">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" disabled>
+                </div>
             </div>
-        </div>
-        <div>
-            <label for="edit-toggle" class="save-btn" aria-label="Save Changes">
-                <span class="material-symbols-outlined">save</span>
-            </label>
-            <label for="edit-toggle" class="reset-btn" aria-label="Reset Changes">
-                <span class="material-symbols-outlined">refresh</span>
-            </label>
-        </div>
+            <div>
+                <!-- Pavlo - Save and Reset only work while you're editing -->
+                <button type="submit" id="saveBtn" class="save-btn" aria-label="Save Changes" disabled>
+                    <span class="material-symbols-outlined">save</span>
+                </button>
+                <button type="button" id="resetBtn" class="reset-btn" aria-label="Reset Changes" disabled>
+                    <span class="material-symbols-outlined">refresh</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Pavlo : Ron this logs you out of your account and takes you to the login page -->
+        <button type="button" id="logoutBtn" class="logout-btn">
+            <span class="material-symbols-outlined">logout</span>
+            Log Out
+        </button>
     </div>
     </main>
 
