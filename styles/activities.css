@@ -41,6 +41,26 @@ h1, h3{
     margin: 0.4em;
 }
 
+#gameIntro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+#gameIntro > img{
+    width: 70vw;
+}
+
+#gameIntro > ol{
+    text-align: left;
+}
+
+#gameIntro li{
+    margin: 1em;
+}
+
 #game-layout{
     display: flex;
     flex-direction: column;
