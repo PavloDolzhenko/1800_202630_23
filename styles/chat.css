@@ -1,0 +1,64 @@
+/* CHAT PAGE
+   Pavlo : Ron these are the styles for chat.html. The colours come from
+   the variables in skeleton.css, so it stays grayscale and works in dark mode too. */
+
+/* Pavlo - the box in the middle that holds the chat (same look as the login box).
+   min-height instead of height so it can grow when the "Chat saved!" message shows up. */
+.chat-card {
+    max-width: 420px;
+    min-height: 700px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    background: var(--page-bg);
+    box-shadow: 0px 6px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--icon-color);
+    font-family: Arial, Helvetica, sans-serif;   /* Pavlo - Bootstrap replaces the body font, so Arial is set again here */
+    text-align: center;
+}
+
+.chat-logo {
+    font-size: 48px;
+    color: var(--icon-color);
+    margin-bottom: 10px;
+}
+
+.chat-scroll-list {
+    width: 100%;
+    height: 600px;        /* Required to trigger scrolling */
+    overflow-y: auto;     /* Adds a vertical scrollbar only when needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    list-style-type: none;
+    align-items: center;
+}
+
+.chat-scroll-list li {
+    border: 1px solid #eee;
+    padding: 8px 8px 8px 8px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    height: 100px;
+    align-items: left;
+    display: flex;
+}
+
+.chat-scroll-list li:hover {
+    background-color: #3e3e3e;
+    cursor: pointer;
+}
+
+.chat-scroll-list li span {
+    align-items: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
