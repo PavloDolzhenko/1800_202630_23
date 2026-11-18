@@ -1,0 +1,348 @@
+/* CHAT + ADD FRIEND PAGES
+   Pavlo : Ron these are the styles for chat.html, chatting.html and add-friend.html.
+   They all use the same box, search bar and list rows, so it's all in one file.
+   The colours come from the variables in skeleton.css, so it stays grayscale and works in dark mode too. */
+
+/* Pavlo - the box in the middle that holds everything (same look as the login and profile boxes) */
+.chat-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    background: var(--page-bg);
+    box-shadow: 0px 6px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--icon-color);
+    font-family: Arial, Helvetica, sans-serif;   /* Pavlo - Bootstrap replaces the body font, so Arial is set again here */
+    text-align: center;
+}
+
+.chat-logo {
+    font-size: 48px;
+    color: var(--icon-color);
+    margin-bottom: 10px;
+}
+
+.chat-card h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.chat-subtitle {
+    margin-bottom: 20px;
+}
+
+/* Pavlo - small grey note, like "You don't have a username yet" on Add Friend */
+.chat-note {
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+/* Pavlo - Bootstrap makes links blue, this keeps them grey */
+.chat-note a,
+.list-message a {
+    color: var(--icon-color);
+    font-weight: bold;
+}
+
+
+/* SEARCH BAR
+   Pavlo - the grey rounded search box (magnifying glass on the left) */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 14px;
+    margin-bottom: 16px;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    cursor: text;
+}
+
+/* Pavlo - the outline goes darker when you're typing in it */
+.search-box:focus-within {
+    border-color: var(--icon-active);
+}
+
+.search-box input {
+    flex-grow: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: none;
+    color: var(--icon-color);
+}
+
+
+/* LISTS (chats and search results)
+   Pavlo - the scrolling list. max-height makes it scroll instead of making the page super long. */
+.user-list {
+    max-height: 50vh;
+    margin: 0;
+    padding: 4px 4px 0;
+    overflow-y: auto;
+    list-style: none;
+    text-align: left;
+}
+
+/* Pavlo - the underlined text in the middle when the list is empty (same as the wireframe) */
+.list-message {
+    margin: 30px 10px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Pavlo - one person / chat. Picture on the left, name in the middle, button or date on the right. */
+.user-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 16px;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--icon-color);
+    text-decoration: none;
+}
+
+/* Pavlo - only the chat rows are links, so only they change colour when you hover */
+a.user-row:hover {
+    color: var(--icon-active);
+}
+
+/* Pavlo - the grey square with the first letter of their name (we don't have profile pictures yet) */
+.avatar {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: var(--icon-color);
+    color: var(--page-bg);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Pavlo - min-width: 0 lets long messages get cut off with "..." instead of stretching the row */
+.user-text {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 16px;
+}
+
+.user-status {
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chat-date {
+    flex-shrink: 0;
+    align-self: flex-start;
+    font-size: 11px;
+}
+
+/* Pavlo - the bell next to "New message". Hidden unless the row has the has-new class (chat.js adds it). */
+.new-icon {
+    display: none;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.user-row.has-new .new-icon {
+    display: inline-block;
+}
+
+.user-row.has-new .user-status {
+    color: var(--icon-active);
+    font-weight: bold;
+}
+
+/* Pavlo - the round + / chat button on the right of a search result */
+.row-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--page-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 50%;
+    color: var(--icon-color);
+    cursor: pointer;
+}
+
+.row-btn:enabled:hover {
+    color: var(--icon-active);
+}
+
+.row-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Pavlo - the Add Friends button at the bottom of the chat list (same look as the Log Out button) */
+.add-friends-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 240px;
+    height: 45px;
+    margin: 16px auto 0;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--icon-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.add-friends-btn:hover {
+    color: var(--icon-active);
+}
+
+
+/* CHATTING PAGE
+   Pavlo - the bar at the top with your friend's letter and name */
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 16px;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Pavlo - the box the messages scroll in. The height is the screen height minus the navbars,
+   so the type box always fits on the screen. min-height stops it getting too small. */
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: calc(100vh - 420px);
+    min-height: 200px;
+    padding: 12px;
+    overflow-y: auto;
+    border: 2px solid var(--nav-border);
+    border-radius: 16px;
+    text-align: left;
+}
+
+/* Pavlo - the date line between messages, like "11/18/2026" */
+.date-divider {
+    align-self: center;
+    margin: 6px 0;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+/* Pavlo - one chat bubble */
+.message {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 16px;
+    box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Pavlo - overflow-wrap stops a really long word from going outside the bubble */
+.message p {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.message small {
+    display: block;
+    margin-top: 2px;
+    font-size: 10px;
+    text-align: right;
+    opacity: 0.8;
+}
+
+/* Pavlo - your messages: dark bubble on the right */
+.message.mine {
+    align-self: flex-end;
+    background: var(--icon-color);
+    color: var(--page-bg);
+    border-bottom-right-radius: 4px;
+}
+
+/* Pavlo - your friend's messages: light bubble on the left */
+.message.theirs {
+    align-self: flex-start;
+    background: var(--nav-bg);
+    color: var(--icon-color);
+    border: 2px solid var(--nav-border);
+    border-bottom-left-radius: 4px;
+}
+
+/* Pavlo - the type box and send button at the bottom */
+.message-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.message-form input {
+    flex-grow: 1;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
+    border-radius: 20px;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--icon-color);
+}
+
+.message-form input:focus {
+    outline: none;
+    border-color: var(--icon-active);
+}
+
+.send-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--icon-color);
+    border: 2px solid var(--nav-border);
+    border-radius: 50%;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);
+    color: var(--page-bg);
+    cursor: pointer;
+}
+
+.send-btn:enabled:hover {
+    background: var(--icon-active);
+}
+
+/* Pavlo - greys things out while the chat is still loading */
+.send-btn:disabled,
+.message-form input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

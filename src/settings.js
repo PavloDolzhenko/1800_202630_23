@@ -6,7 +6,6 @@ import { getTheme, saveTheme } from "./theme.js";
 
 const darkModeToggle = document.getElementById("darkModeToggle");
 const accountNote = document.getElementById("accountNote");
-const backBtn = document.getElementById("backBtn");
 
 let currentUser = null;   // Pavlo - stays null if nobody is logged in
 
@@ -59,16 +58,5 @@ darkModeToggle.addEventListener("change", async () => {
     } catch (error) {
         console.error(error);
         accountNote.textContent = "Couldn't save to your account right now, but it's still saved on this browser.";
-    }
-});
-
-
-// Pavlo : Ron this takes care of the Back button. If you came to Settings from one of our pages
-// it sends you back to that same page. If not (like someone opened settings.html straight away)
-// the href="index.html" on the button just sends them Home.
-backBtn.addEventListener("click", (event) => {
-    if (document.referrer.startsWith(window.location.origin)) {
-        event.preventDefault();   // Pavlo - stops it from going to index.html
-        history.back();
     }
 });
