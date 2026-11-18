@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spot the Bot</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google icons (same as every other page) -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
+
+    <!-- Pavlo : Ron skeleton.css has the navbar. chat.css has the styles for both chat pages AND this page,
+         since they all use the same search box and list rows. -->
+    <link rel="stylesheet" href="./styles/skeleton.css">
+    <link rel="stylesheet" href="./styles/chat.css">
+
+</head>
+<body>
+
+    <!-- Top navbar -->
+    <!-- Pavlo : Ron this is the same grey curved bar with a Back button on the left and the Settings gear on the right. -->
+    <header class="top-nav">
+
+        <!-- Pavlo - this button takes you back to the page you were on before (main.js does that part) -->
+        <a href="chat.html" id="backBtn" class="icon-btn back-btn" aria-label="Back">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <small>Back</small>
+        </a>
+
+        <!-- Pavlo - this button leads to the settings page (gear icon, top-right) -->
+        <a href="settings.html" class="icon-btn" aria-label="Settings">
+            <span class="material-symbols-outlined">settings</span>
+        </a>
+
+    </header>
+
+    <!-- Pavlo : Ron this is our add friend section. You type a username, addFriend.js searches Firestore
+         and shows the people it finds. The + button adds them as a friend. -->
+    <main class="page-content">
+    <div class="chat-card">
+        <span class="material-symbols-outlined chat-logo">person_add</span>
+        <h1>Add Friend</h1>
+        <p class="chat-subtitle">Search for a username to add a friend.</p>
+
+        <!-- Pavlo - only shows up if YOU don't have a username yet (nobody could find you) -->
+        <p id="noUsernameNote" class="chat-note d-none">
+            You don't have a username yet. <a href="profile.html">Set one in your Profile</a> so friends can find you.
+        </p>
+
+        <!-- Pavlo - the search box. It starts disabled and addFriend.js turns it on once you're logged in. -->
+        <label class="search-box">
+            <span class="material-symbols-outlined">search</span>
+            <input type="search" id="searchInput" placeholder="Search username..." autocomplete="off" maxlength="20" disabled>
+        </label>
+
+        <!-- Pavlo - the search results go in here -->
+        <ul id="results" class="user-list">
+            <li class="list-message">Start searching to find new friends!</li>
+        </ul>
+    </div>
+    </main>
+
+    <!-- Pavlo : Ron this is the "stamp" for one person in the results. It's not shown on its own,
+         addFriend.js copies it for every person it finds and fills in their name. -->
+    <template id="userRowTemplate">
+        <li class="user-row">
+            <span class="avatar"></span>
+            <span class="user-text">
+                <strong class="user-name"></strong>
+                <small class="user-status"></small>
+            </span>
+            <button type="button" class="row-btn">
+                <span class="material-symbols-outlined"></span>
+            </button>
+        </li>
+    </template>
+
+    <!-- Bottom navbar -->
+    <!-- Pavlo - this is the bottom part: a round menu button on the left and a round Chat button on the right. -->
+    <nav class="bottom-nav">
+
+        <!-- Pavlo - this hidden checkbox is the "open/closed" switch for the menu.
+             Clicking the round button (the <label> below) ticks it, and the CSS
+             shows the Home / Search / Activities / Add Friend buttons. No JavaScript needed. -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+        <!-- Pavlo - this is the round button bottom-left. It opens and closes the menu. -->
+        <label for="menu-toggle" class="circle-btn menu-btn" aria-label="Open menu">
+            <span class="material-symbols-outlined">ads_click</span>
+        </label>
+
+        <!-- Pavlo - these are the 4 buttons that pop out when the menu is open. -->
+        <div class="menu-items">
+
+            <!-- Pavlo - this button leads to the Home page -->
+            <a href="index.html" class="menu-item item-home">
+                <span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+
+            <!-- Pavlo - this button leads to the Search page -->
+            <a href="search.html" class="menu-item item-search">
+                <span class="material-symbols-outlined">search</span>
+                Search
+            </a>
+
+            <!-- Pavlo - this button leads to the Activities page (the AI-or-Real quizzes) -->
+            <a href="activities.html" class="menu-item item-activities">
+                <span class="material-symbols-outlined">sports_esports</span>
+                Activities
+            </a>
+
+            <!-- Pavlo - this button leads to the Add Friend page -->
+            <a href="add-friend.html" class="menu-item item-add-friend">
+                <span class="material-symbols-outlined">person_add</span>
+                Add Friend
+            </a>
+
+        </div>
+
+        <!-- Pavlo - this button leads to the Chat page (round button bottom-right) -->
+        <a href="chat.html" class="circle-btn chat-btn" aria-label="Chat">
+            <span class="material-symbols-outlined">forum</span>
+            <small>Chat</small>
+        </a>
+
+    </nav>
+
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/addFriend.js"></script>
+
+</body>
+
+</html>

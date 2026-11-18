@@ -14,7 +14,6 @@ const saveBtn = document.getElementById("saveBtn");
 const resetBtn = document.getElementById("resetBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const alertBox = document.getElementById("profileAlert");
-const backBtn = document.getElementById("backBtn");
 
 let currentUser = null;
 let savedUsername = "";   // Pavlo - the username that's in Firestore right now (Reset puts this back)
@@ -95,8 +94,12 @@ profileForm.addEventListener("submit", async (event) => {
     saveBtn.disabled = true;   // Pavlo - so it can't be clicked twice while Firebase is working
 
     try {
-        // Pavlo - merge: true only changes the username, everything else in their document stays the same
-        await setDoc(doc(db, "users", currentUser.uid), { username: username }, { merge: true });
+        // Pavlo - merge: true only changes the username, everything else in their document stays the same.
+        // usernameLower is the same name in small letters, Add Friend searches it so capitals don't matter.
+        await setDoc(doc(db, "users", currentUser.uid), {
+            username: username,
+            usernameLower: username.toLowerCase(),
+        }, { merge: true });
 
         savedUsername = username;
         setEditing(false);
@@ -119,16 +122,5 @@ logoutBtn.addEventListener("click", async () => {
         console.error(error);
         showMessage("Couldn't log out. Please try again.");
         logoutBtn.disabled = false;
-    }
-});
-
-
-// Pavlo : Ron this takes care of the Back button. If you came to Profile from one of our pages
-// it sends you back to that same page. If not (like someone opened profile.html straight away)
-// the href="index.html" on the button just sends them Home.
-backBtn.addEventListener("click", (event) => {
-    if (document.referrer.startsWith(window.location.origin)) {
-        event.preventDefault();   // Pavlo - stops it from going to index.html
-        history.back();
     }
 });
