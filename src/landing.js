@@ -11,7 +11,7 @@ onAuthStateChanged(auth, async function (user) {
   const userDoc = await getDoc(doc(db, "users", user.uid));
   const data = userDoc.data() || {};   // {} if they don't have a document yet
 
-  // use the first one that exists: username, then first name, then full name, then email
-  const name = data.username || data.firstName || user.displayName || user.email;
+  // use the first one that exists: username, then first name, then email
+  const name = data.username || data.firstName || user.email;
   document.getElementById("userName").textContent = name;
 });
