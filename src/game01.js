@@ -37,6 +37,7 @@ let aiOption = 1;
 // If the timer is running, then take the literal system time right now,
 // And subtract it by the system time from when the activity started (stretchStart) to get the time of the current activity
 // Then return that plus the time already played before the last pause (elapsedMs) + convert to seconds
+// AI was used to find the formula for time
 function getElapsedSeconds() {
   let current = 0;
   if (timerRunning) {
@@ -70,12 +71,13 @@ function pauseTimer() {
   updateTimerDisplay();
 }
 
-// Reads every document in "activityContent" and stores each one's fields in rounds
-// Catches errors in loading
+// Reads every document in "activityContent" in firestore and stores each one's fields in rounds
+// Using a try catch
 async function loadRounds() {
   try {
-    const querySnapshot = await getDocs(collection(db, "activityContent"));
+    const querySnapshot = await getDocs(collection(db, "activityContent")); //reads the collection, waits for firestore to answer
 
+    //add the questions to the rounds array
     querySnapshot.forEach(function (docSnap) {
       rounds.push(docSnap.data());
     });
@@ -87,7 +89,6 @@ async function loadRounds() {
 
 // Putting option content on a card (image or as text) depending on the round type
 function fillCard(number, content, type) {
-  console.log("Card", number, type, typeof content, content);
   const img = document.getElementById("option" + number + "Img");
   const text = document.getElementById("option" + number + "Text");
 
@@ -106,14 +107,14 @@ function fillCard(number, content, type) {
 // Picks a random round, randomly decides which card gets the AI content,
 // then fills both cards (images vs images, or text vs text)
 function showRound() {
+
   if (roundsLeft.length === 0) {
-    console.log("No rounds loaded yet");
     return;
   }
 
   // Math.random() gives 0 up to 0.99..., so this picks a random position in the array
   const randomIndex = Math.floor(Math.random() * roundsLeft.length);
-  currentRound = rounds[randomIndex];
+  currentRound = roundsLeft[randomIndex];
 
   // Less than 0.5 gives it a 50/50 chance
   if (Math.random() < 0.5) {
@@ -213,8 +214,7 @@ function showResult(correct) {
   message.textContent = `Score: ${score} | Wrong: ${wrongAnswers}`;
 
   // Say which card was the AI, then show the round's explanation text
-  document.getElementById("resultExp").textContent =
-    `Option ${aiOption} was the AI. ${currentRound.explanation}`;
+  document.getElementById("resultExp").textContent = `Option ${aiOption} was the AI. ${currentRound.explanation}`;
 
   // Show the explanation through an image
   const expImg = document.getElementById("resultExpImg");
@@ -249,6 +249,7 @@ function showFinal() {
     title.textContent = "Game over, you lost!";
   }
 
+  //Final stats, score, amount wrong, and final time
   document.getElementById("finalMessage").textContent =
     `Score: ${score} | Wrong: ${wrongAnswers} | Time: ${finalSeconds.toFixed(1)}s`;
 
@@ -301,9 +302,8 @@ const returnAnswer = function (userChoice) {
   showResult(correct);
 };
 
-//Buttons + Event Listeners for the game
-//Only using option 1 and option 2 for now as right and wrong, hardcoded
 
+//Buttons + Event Listeners for the game
 //During intro, when user presses button, game starts
 document.getElementById("introNextBtn").addEventListener("click", startGame);
 
@@ -324,11 +324,11 @@ document.getElementById("nextBtn").addEventListener("click", function () {
   }
 });
 
-// Resumes the timer only if a game is running and the user is on a
-// question (not the intro, result, or final screen).
+// Resumes the timer only if a game is running and the user is on a question
+// (not the intro, result, or final screen)
 function resumeIfOnQuestion() {
   if (gameOver) return;
-  if (startTime === null) return;
+  if (startTime === null) return; 
 
   const questionScreen = document.getElementById("questionScreen");
   if (questionScreen.classList.contains("d-none") != true) {
