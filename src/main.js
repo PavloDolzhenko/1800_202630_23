@@ -3,6 +3,9 @@ import './theme.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 
+import { auth } from "./firebaseConfig.js";
+import { onAuthStateChanged } from "firebase/auth";
+
 // If you have custom global styles, import them as well:
 // import '../styles/style.css';
 
@@ -25,4 +28,17 @@ if (backBtn) {
             history.back();
         }
     });
+}
+
+// Ron: If a user is logged in and is on index.html, they get sent to landing.html
+// main.js loads on every page, so this only runs on index.html, or users could never leave the other pages
+const onIndexPage =
+  location.pathname.endsWith("index.html") || location.pathname.endsWith("/");
+
+if (onIndexPage) {
+  onAuthStateChanged(auth, function (user) {
+    if (user) {
+      location.href = "landing.html";
+    }
+  });
 }
