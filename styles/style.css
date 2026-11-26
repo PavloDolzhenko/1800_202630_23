@@ -1,343 +1,490 @@
-/*
-   SPOT THE BOT - MAIN STYLESHEET
-     1. Colours Variables - Pavlo
-     2. Base / page reset - Pavlo
-     3. Top navbar - Pavlo
-     4. Welcome / hero section - Ron
-     5. Testimonials section - Ron
-     6. Bottom navbar - Bavlo
-     7. Pop-out menu - Pavlo
-*/
-
-
-/*
-   1. COLOURS
-   Pavlo - change them here and the whole site updates.
-   (Grayscale for now, like the wireframe.)
-*/
+/* --[ Colours ]-- */
 :root {
-    --nav-bg: #e0e0e0;        /* Pavlo - background of the top bar and round buttons */
-    --nav-border: #9e9e9e;    /* Pavlo - the thin outline around them */
-    --icon-color: #616161;    /* Pavlo - colour of the icons */
-    --button-color: #858585;    /* Pavlo - colour of the buttons */
-    --icon-active: #000000;   /* Pavlo - colour when you hover a button */
-    --page-bg: #ffffff;       /* Pavlo - the page background */
-    --nav-pressed: #d0d0d0;   /* Pavlo - the menu button while the menu is open */
+    --bg: #f7f2ea;
+    --surface: #fffcf7;
+    --soft: #efe7db;
+    --line: #e2d7c7;
+    --text: #2e2a24;
+    --muted: #736a5e;
+    --primary: #4e5d3f;
+    --primary-soft: #e4e9da;
+    --on-primary: #fbf8f2;
+    --accent: #e6d3c4;
+    --danger: #a9544a;
+    --danger-soft: #f4e0db;
+    --success: #557f52;
+    --shadow: 0 1px 2px rgb(46 42 36 / .05), 0 12px 32px -14px rgb(46 42 36 / .2);
+    --ease: cubic-bezier(.2, .8, .2, 1);
+    color-scheme: light;
 }
 
-/* Pavlo : Ron these are the DARK MODE colours (same as in skeleton.css).
-   They only switch on when dark mode is turned on in Settings. */
-:root[data-bs-theme="dark"] {
-    --nav-bg: #2a2a2a;
-    --nav-border: #555555;
-    --icon-color: #9e9e9e;
-    --button-color: #6e6e6e;
-    --icon-active: #ffffff;
-    --page-bg: #1f1f1f;
-    --nav-pressed: #3a3a3a;
-    --bs-body-bg: var(--page-bg);   /* Pavlo - makes Bootstrap use our dark grey instead of its blue-ish one */
+:root[data-theme="dark"] {
+    --bg: #1c1a17;
+    --surface: #26231f;
+    --soft: #302c27;
+    --line: #3d3730;
+    --text: #ece5d9;
+    --muted: #a69d90;
+    --primary: #a8b78e;
+    --primary-soft: #343b2b;
+    --on-primary: #1c1a17;
+    --accent: #4a3d35;
+    --danger: #dc8a7d;
+    --danger-soft: #3e2a26;
+    --success: #93b88b;
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 12px 32px -14px rgb(0 0 0 / .7);
+    color-scheme: dark;
 }
 
 
-/*
-   2. BASE / PAGE RESET
-   Pavlo - basic reset so everything lines up nicely
-*/
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* --[ Base ]-- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--page-bg);
     min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.55 "Nunito Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color .3s, color .3s;
 }
 
-/* Pavlo - the space between the two navbars where page content goes.
-   The padding stops content from hiding under the navbars. */
-.page-content {
-    padding: 110px 16px 120px;
+h1, h2, h3, blockquote { font-family: Lora, Georgia, serif; font-weight: 600; line-height: 1.25; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.1rem; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+.icon {
+    display: inline-block;
+    font: normal 24px/1 "Material Symbols Rounded";
+    font-feature-settings: "liga";
+    font-variation-settings: "FILL" 0;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: font-variation-settings .2s;
 }
+a:hover .icon, button:hover .icon, label:hover .icon { font-variation-settings: "FILL" 1; }
+
+.d-none { display: none !important; }
+.muted { color: var(--muted); }
+.center { text-align: center; }
+.center > img, .center > .avatar, .center > .icon, .center > .chip { justify-self: center; }
+.ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
 
-/*
-   3. TOP NAVBAR
-   Pavlo - the curved grey bar at the top
-*/
-.top-nav {
-    position: fixed;          /* Pavlo - stays at the top when you scroll */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    height: 85px;
-    padding: 0 24px 10px;
-    display: flex;
-    justify-content: space-between;   /* Pavlo - pushes Settings left and Profile right */
-    align-items: center;
-    background: var(--nav-bg);
-    border-bottom: 2px solid var(--nav-border);
-    border-radius: 0 0 50% 50% / 0 0 30px 30px;   /* Pavlo - this makes the curved bottom */
-}
-
-/* Pavlo - the Settings and Profile icon buttons */
-.icon-btn {
-    color: var(--icon-color);
-    text-decoration: none;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.icon-btn:hover {
-    color: var(--icon-active);
-}
-
-.icon-btn .material-symbols-outlined {
-    font-size: 40px;          /* Pavlo - make the top icons bigger/smaller here */
-}
-
-
-/*
-   4. WELCOME / HERO SECTION
-   Ron Mark - editing parts of the Bootstrap template to match
-   with everything else
-*/
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-#botImage {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.hero-section {
-    position: relative;
-    padding: 20px;
-    color: var(--icon-color);
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;   /* Bootstrap replaces the body font, so Arial is set again here */
-}
-
-/* Ron Mark - the robot logo above the title */
-.hero-section .material-symbols-outlined {
-    font-size: 5em;
-}
-
-/* Ron Mark - style for the "Get Started" button
-   (not added to the button in index.html yet) */
-.GetStarted {
-    width: 150px;
-    height: 45px;
-    background-color: var(--nav-bg);
-    border-color: var(--nav-border);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    text-align: center;
-    box-shadow: 0px 6px 0px 0px rgba(0, 0, 0, 0.2);
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.GetStarted:hover {
-    color: #ffffff;
-    background-color: var(--nav-border);
-    border-color: var(--nav-bg);
-}
-
-
-/*
-   5. TESTIMONIALS SECTION
-   Ron Mark - survey responses shown in a Bootstrap carousel
-*/
-.surveyHeader {
-    font-size: large;
-    text-align: center;
-}
-
-/* Not used in index.html yet (the carousel uses #testimonialCarousel) */
-.testimonial-carousel {
-    position: relative;
-    max-width: 800px;
+/* --[ Layout ]-- */
+.page {
+    display: grid;
+    gap: 28px;
+    max-width: 760px;
     margin: 0 auto;
+    padding: 96px 20px 150px;
 }
+.page.wide { max-width: 1040px; }
+.page.narrow { max-width: 540px; }
+.page.tight { gap: 14px; }
+.page > * { animation: rise .5s var(--ease) both; }
+.page > :nth-child(2) { animation-delay: .06s; }
+.page > :nth-child(3) { animation-delay: .12s; }
+.page > :nth-child(n+4) { animation-delay: .18s; }
 
-/* One slide of the carousel */
-.testimonial-slide {
-    padding: 20px;
-    text-align: center;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
+.page-head { display: grid; gap: 8px; justify-items: center; text-align: center; }
+.stack { display: grid; gap: 16px; }
+.grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min, 220px)), 1fr)); }
+.grid.big { --min: 320px; }
+.grid.small { --min: 150px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.label { font: 700 .8rem "Nunito Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+.badge {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: var(--primary-soft);
+    color: var(--primary);
 }
-
-/* WELCOME / HERO SECTION
-   Ron Mark - Editing parts of the bootstrap template to match with everything else */
-
-.hero-section{
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--icon-color);
-}
-
-.hero-section .material-symbols-outlined{
-    font-size: 5em; 
-}
-
-.hero-section button{
-    background-color: var(--icon-color);
-    border-color: var(--icon-active);
-    color: var(--page-bg);   /* Pavlo - white text normally, dark text in dark mode so it's still readable */
-}
-
-/* Testimonials Section
-   Ron Mark -  */
-
-.surveyHeader{
-    text-align: center;
-    font-size:large;
-}
-
-.testimonial-carousel {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-}
-.testimonial-slide {
-    text-align: center;
-    padding: 20px;
-}
-.testimonial-slide img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-}
-.carousel-control-prev,
-.carousel-control-next {
-    width: 40px;
-    height: 40px;
-    background-color: var(--icon-color);
-    border-color: var(--icon-active);
-    border-radius: 70%;
-}
-
-.carousel-controls button:hover {
-    color: #ffffff;
-    background-color: var(--icon-active);
-    border-color: var(--icon-color);
-}
+.badge .icon { font-size: 32px; }
+.badge.sm { width: 46px; height: 46px; border-radius: 14px; }
+.badge.sm .icon { font-size: 24px; }
 
 
-/* BOTTOM NAVBAR
-   Pavlo - this styles the two round buttons at the bottom.*/
-
-/* Pavlo - the shared look for BOTH round buttons (menu + chat) */
-.circle-btn {
+/* --[ Top bar ]-- */
+site-header {
     position: fixed;
-    bottom: -20px;            /* Pavlo - a bit hangs off the screen like in the wireframe */
-    z-index: 10;
-    width: 110px;
-    height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    inset: 0 0 auto;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    background: var(--nav-bg);
-    border: 2px solid var(--nav-border);
-    border-radius: 50%;       /* Pavlo - circle */
-    color: var(--icon-color);
+    height: 64px;
+    padding: 0 12px;
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0 0 26px 26px;
+    box-shadow: var(--shadow);
+}
+site-header .title { font: 600 1.15rem Lora, serif; }
+site-header .end { justify-self: end; display: flex; gap: 4px; }
+
+.icon-btn {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 14px;
+    background: none;
+    text-decoration: none;
+    transition: background-color .2s, transform .2s var(--ease);
+}
+.icon-btn:hover, .icon-btn[aria-current] { background: var(--soft); }
+.icon-btn:active { transform: scale(.9); }
+.icon-btn[aria-current] .icon { font-variation-settings: "FILL" 1; }
+
+
+/* --[ Bottom nav ]-- */
+.corner {
+    position: fixed;
+    bottom: -18px;
+    z-index: 30;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    width: 96px;
+    height: 96px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface);
+    box-shadow: var(--shadow);
     text-decoration: none;
     cursor: pointer;
+    transition: transform .3s var(--ease), background-color .2s, color .2s;
 }
+.corner:hover { transform: translateY(-4px); }
+.corner .icon { font-size: 30px; }
+.corner small { font-size: 11px; font-weight: 700; }
+.corner.menu { left: -18px; }
+.corner.chat { right: -18px; }
 
-.circle-btn:hover {
-    color: var(--icon-active);
-}
+.menu-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.menu-toggle:checked ~ .menu { background: var(--primary); color: var(--on-primary); }
+.menu-toggle:checked ~ .menu .icon { transform: rotate(-20deg); }
+.menu-toggle:focus-visible ~ .menu { outline: 2px solid var(--primary); outline-offset: 3px; }
 
-.circle-btn .material-symbols-outlined {
-    font-size: 40px;
-}
-
-/* Pavlo - puts the menu button in the bottom-left corner */
-.menu-btn {
-    left: -20px;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-/* Pavlo - puts the chat button in the bottom-right corner */
-.chat-btn {
-    right: -20px;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
-}
-
-.chat-btn small {
-    font-size: 12px;
-    font-weight: bold;
-}
-
-
-/*
-   7. POP-OUT MENU (Home / Search / Activities / Add Friend)
-   Pavlo - hidden until the round menu button is clicked
-*/
-
-/* Pavlo - hides the checkbox itself. We only use it as an on/off switch. */
-.menu-toggle {
-    display: none;
-}
-
-/* Pavlo - the shared look for each pop-out button */
-.menu-item {
+.scrim {
     position: fixed;
-    z-index: 11;
-    width: 70px;              /* Pavlo - every button is the same size box, so the curve stays even */
-    height: 54px;
+    inset: 0;
+    z-index: 25;
+    background: rgb(28 26 23 / .3);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+}
+.menu-toggle:checked ~ .scrim { opacity: 1; pointer-events: auto; }
+
+.menu-items {
+    position: fixed;
+    left: 18px;
+    bottom: 100px;
+    z-index: 30;
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+}
+.menu-items a {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    color: var(--icon-color);
-    font-size: 12px;
-    font-weight: bold;
-    white-space: nowrap;      /* Pavlo - keeps "Add Friend" on one line */
+    gap: 10px;
+    padding: 8px 18px 8px 8px;
+    border-radius: 999px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    font-weight: 700;
     text-decoration: none;
-    opacity: 0;               /* Pavlo - invisible while the menu is closed */
-    pointer-events: none;     /* Pavlo - can't be clicked while closed */
-    transform: scale(0.6);    /* Pavlo - starts small, then grows when the menu opens */
-    transition: opacity 0.2s, transform 0.2s;   /* Pavlo - extra animation, not required for the course */
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px) scale(.9);
+    transition: transform .35s var(--ease), opacity .25s, background-color .2s;
+    transition-delay: calc(var(--i) * 40ms);
+}
+.menu-items .icon { padding: 8px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); }
+.menu-items a:hover { background: var(--soft); }
+.menu-toggle:checked ~ .menu-items a { opacity: 1; pointer-events: auto; transform: none; }
+
+
+/* --[ Buttons ]-- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 26px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--on-primary);
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform .15s var(--ease), filter .2s, background-color .2s, box-shadow .2s;
+}
+.btn:hover { filter: brightness(.93); box-shadow: var(--shadow); }
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .5; cursor: not-allowed; filter: none; box-shadow: none; transform: none; }
+.btn.ghost { background: transparent; border-color: var(--primary); color: var(--primary); }
+.btn.ghost:hover { background: var(--primary-soft); filter: none; }
+.btn.danger { background: var(--danger-soft); color: var(--danger); }
+.btn.block { width: 100%; }
+
+.link {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+.link:hover { text-decoration: underline; }
+
+
+/* --[ Cards ]-- */
+.card {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+a.card, button.card { display: block; color: inherit; text-align: left; text-decoration: none; transition: transform .3s var(--ease), box-shadow .3s; }
+a.card:hover, button.card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -20px rgb(46 42 36 / .4); }
+
+.tile { display: flex !important; flex-direction: column; padding: 0; overflow: hidden; }
+.tile img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .6s var(--ease); }
+.tile:hover img { transform: scale(1.05); }
+.tile > div { display: grid; gap: 6px; padding: 18px 20px 22px; }
+.tile p { color: var(--muted); }
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--soft);
+    font-weight: 700;
+    font-size: .9rem;
+}
+.chip .icon { font-size: 18px; }
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-weight: 600;
+    animation: rise .3s var(--ease);
+}
+.alert.error { background: var(--danger-soft); color: var(--danger); }
+
+
+/* --[ Forms ]-- */
+.field { display: grid; gap: 6px; font-weight: 700; font-size: .9rem; text-align: left; }
+.field-head { display: flex; justify-content: space-between; align-items: center; }
+.field small { font-weight: 400; color: var(--muted); }
+
+.field input, .input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg);
+    font-weight: 400;
+    font-size: 1rem;
+    transition: border-color .2s, box-shadow .2s, background-color .2s;
+}
+.field input:focus, .input:focus, .search:focus-within {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+.field input:disabled { background: var(--soft); color: var(--muted); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 0 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    transition: border-color .2s, box-shadow .2s;
+}
+.search input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: var(--text); }
+.search input::-webkit-search-cancel-button { filter: grayscale(1); cursor: pointer; }
+
+.switch {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 56px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--line);
+    cursor: pointer;
+    transition: background-color .3s;
+}
+.switch::before {
+    content: "light_mode";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--surface);
+    box-shadow: 0 2px 6px rgb(0 0 0 / .2);
+    color: var(--muted);
+    font: 16px/26px "Material Symbols Rounded";
+    font-feature-settings: "liga";
+    text-align: center;
+    transition: transform .4s var(--ease);
+}
+.switch:checked { background: var(--primary); }
+.switch:checked::before { content: "dark_mode"; transform: translateX(24px) rotate(360deg); color: var(--primary); }
+
+
+/* --[ Lists ]-- */
+.list { display: grid; gap: 10px; padding: 0; list-style: none; }
+.list > li { animation: rise .4s var(--ease) both; }
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    text-decoration: none;
+    transition: transform .25s var(--ease), background-color .2s;
+}
+a.row:hover, label.row:hover { background: var(--soft); transform: translateX(4px); }
+label.row { cursor: pointer; }
+.grow { display: grid; flex: 1; min-width: 0; }
+.row small { color: var(--muted); }
+.row > .icon:last-child { color: var(--muted); }
+.row.tip { background: var(--accent); border-color: transparent; }
+
+.avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--accent);
+    font: 600 1.2rem Lora, serif;
+}
+.avatar.xl { width: 96px; height: 96px; border-radius: 30px; font-size: 2.6rem; }
+
+.list-message { padding: 36px 12px; margin: auto; color: var(--muted); text-align: center; }
+.chat-date { align-self: flex-start; font-size: .75rem; }
+.new-icon { display: none !important; font-size: 16px; color: var(--danger); }
+.row.has-new .new-icon { display: inline-block !important; }
+.row.has-new .user-status { color: var(--text); font-weight: 700; }
+
+
+/* --[ Home ]-- */
+.hero {
+    display: grid;
+    gap: 18px;
+    justify-items: center;
+    padding: 56px 24px;
+    border-radius: 32px;
+    background: linear-gradient(180deg, var(--surface), var(--accent));
+    text-align: center;
+}
+.hero p { max-width: 560px; font-size: 1.1rem; color: var(--muted); }
+.logo { width: 88px; filter: drop-shadow(0 12px 20px rgb(78 93 63 / .3)); animation: float 4s ease-in-out infinite; }
+.logo.sm { width: 64px; animation: none; }
+
+.features { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); text-align: center; }
+.features > div { display: grid; gap: 8px; justify-items: center; padding: 8px; }
+.features .icon { padding: 14px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); font-size: 30px; }
+.features p { color: var(--muted); }
+
+.quotes {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(85%, 330px);
+    gap: 16px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+.quotes figure { display: grid; align-content: space-between; gap: 14px; scroll-snap-align: start; }
+blockquote { font-style: italic; font-weight: 500; }
+figcaption { color: var(--muted); font-weight: 700; font-size: .9rem; }
+
+.wave { font-size: 56px; color: var(--primary); transform-origin: 70% 70%; animation: wave 2.2s ease-in-out .5s; }
+
+
+/* --[ Game ]-- */
+.game-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.options { display: grid; gap: 14px; }
+.option { display: grid !important; grid-template-rows: 1fr auto; gap: 10px; padding: 10px; }
+.option img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; background: var(--soft); }
+.option p { display: grid; place-items: center; min-height: 200px; padding: 18px; border-radius: 14px; background: var(--soft); }
+.option > span { font-weight: 700; text-align: center; }
+.or { place-self: center; font: italic 600 1.1rem Lora, serif; color: var(--muted); }
+.shot { max-height: 340px; width: auto; margin: 0 auto; border-radius: 16px; }
+.steps { display: grid; gap: 6px; padding-left: 1.3em; }
+
+.result-icon { font-size: 68px; font-variation-settings: "FILL" 1; animation: pop .45s var(--ease) both; }
+[data-correct="true"] .result-icon, [data-correct="true"] h2 { color: var(--success); }
+[data-correct="false"] .result-icon, [data-correct="false"] h2 { color: var(--danger); }
+
+
+/* --[ Chat ]-- */
+.messages { display: flex; flex-direction: column; gap: 8px; height: calc(100dvh - 330px); min-height: 240px; padding: 16px; overflow-y: auto; }
+.message { align-self: flex-start; max-width: 78%; padding: 10px 14px; border-radius: 18px 18px 18px 6px; background: var(--soft); }
+.message.mine { align-self: flex-end; border-radius: 18px 18px 6px 18px; background: var(--primary); color: var(--on-primary); }
+.message:last-child { animation: pop .3s var(--ease); }
+.message p { overflow-wrap: anywhere; }
+.message small { display: block; font-size: .7rem; text-align: right; opacity: .7; }
+.date-divider { align-self: center; padding: 2px 12px; border-radius: 999px; background: var(--soft); color: var(--muted); font-size: .75rem; }
+.message-form { display: flex; gap: 10px; }
+.message-form .btn { width: 48px; padding: 0; }
+
+
+/* --[ Animations ]-- */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes pop { from { opacity: 0; transform: scale(.85); } }
+@keyframes float { 50% { transform: translateY(-8px); } }
+@keyframes wave { 15%, 45% { rotate: 14deg; } 30% { rotate: -8deg; } 60% { rotate: 0deg; } }
+
+
+/* --[ Bigger screens ]-- */
+@media (min-width: 600px) {
+    .options { grid-template-columns: 1fr auto 1fr; }
+    .quotes { grid-auto-flow: row; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); overflow: visible; }
 }
 
-.menu-item:hover {
-    color: var(--icon-active);
-}
-
-.menu-item .material-symbols-outlined {
-    font-size: 36px;
-}
-
-/* Pavlo - where each button sits around the menu button.
-   The bottom-left corner of each button is anchored to the
-   bottom-left corner of the screen. */
-.item-home       { left: 0;     bottom: 138px; }  /* Pavlo - 90 degrees (top) */
-.item-search     { left: 65px;  bottom: 121px; }  /* Pavlo - 60 degrees */
-.item-activities { left: 113px; bottom: 73px;  }  /* Pavlo - 30 degrees */
-.item-add-friend { left: 130px; bottom: 8px;   }  /* Pavlo - 0 degrees (right) */
-
-/* Pavlo - when the checkbox is ticked (menu open),
-   the 4 buttons become visible, full size and clickable. */
-.menu-toggle:checked ~ .menu-items .menu-item {
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
-}
-
-/* Pavlo - makes the menu button look "pressed" while the menu is open */
-.menu-toggle:checked ~ .menu-btn {
-    color: var(--icon-active);
-    background: var(--nav-pressed);
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
 }

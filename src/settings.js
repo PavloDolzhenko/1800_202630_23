@@ -1,4 +1,3 @@
-// Pavlo : Ron this is our settings section. It only runs on settings.html.
 import { auth, db } from "./firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -6,31 +5,23 @@ import { getTheme, saveTheme } from "./theme.js";
 
 const darkModeToggle = document.getElementById("darkModeToggle");
 const accountNote = document.getElementById("accountNote");
+let currentUser = null;
 
-let currentUser = null;   // Pavlo - stays null if nobody is logged in
-
-
-// Pavlo - puts the switch in the right spot when the page opens (ON if dark mode is already on)
 darkModeToggle.checked = getTheme() === "dark";
 
-
-// Pavlo : Ron make sure you understand this one. Firebase takes a second to check if someone is logged in.
-// If they are, we load the settings saved on their account (users/<their user id> -> settings),
-// so dark mode follows them to any computer. If not, the settings just stay on this browser.
+// --[ Load settings from account ]--
 onAuthStateChanged(auth, async (user) => {
     currentUser = user;
 
     if (!user) {
-        accountNote.innerHTML = '<a href="login.html">Log in</a> to save your settings to your account.';
+        accountNote.innerHTML = '<a href="login.html" class="link">Log in</a> to save your settings to your account.';
         return;
     }
 
     accountNote.textContent = "Your settings are saved to your account.";
 
     try {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        const savedTheme = userDoc.data()?.settings?.theme;   // Pavlo - ?. means "undefined if it's not there yet" instead of crashing
-
+        const savedTheme = (await getDoc(doc(db, "users", user.uid))).data()?.settings?.theme;
         if (savedTheme) {
             saveTheme(savedTheme);
             darkModeToggle.checked = savedTheme === "dark";
@@ -40,19 +31,14 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-
-// Pavlo : Ron this is what runs when you flip the Dark Mode switch.
-// The colours change straight away on this browser, then if you're logged in it also saves it to Firestore.
+// --[ Dark mode switch ]--
 darkModeToggle.addEventListener("change", async () => {
     const theme = darkModeToggle.checked ? "dark" : "light";
     saveTheme(theme);
 
-    if (!currentUser) {
-        return;
-    }
+    if (!currentUser) return;
 
     try {
-        // Pavlo - merge: true only changes settings.theme, the rest of their document (name, username...) stays the same
         await setDoc(doc(db, "users", currentUser.uid), { settings: { theme: theme } }, { merge: true });
         accountNote.textContent = "Your settings are saved to your account.";
     } catch (error) {

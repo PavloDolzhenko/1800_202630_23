@@ -1,177 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="comp1800 template" content="My 1800 App">
-
     <title>Spot the Bot</title>
-
-    <!-- IMPORTANT FOR RON TO READ -->
-    <!-- This loads the Google icons. To change an icon, just change the word
-         inside a <span class="material-symbols-outlined"> (e.g. "home" -> "house").
-         Browse icon names at https://fonts.google.com/icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
-
-    <!-- Ron, this is our own CSS file. All our styles (navbars, hero, testimonials) live in here. -->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" href="images/logo.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Nunito+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0">
+    <link rel="stylesheet" href="styles/style.css">
+    <script>document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";</script>
+    <script type="module" src="src/main.js"></script>
 </head>
-
 <body>
+    <!-- --[ Navbar ]-- -->
+    <site-header></site-header>
 
-    <!-- Top navbar -->
-    <!-- Pavlo - this is the grey curved bar at the top of every screen. -->
-    <header class="top-nav">
-
-        <!-- Pavlo - this button leads to the Settings page (gear icon, top-left) -->
-        <a href="settings.html" class="icon-btn" aria-label="Settings">
-            <span class="material-symbols-outlined">settings</span>
-        </a>
-
-        <!-- Pavlo - this button leads to the Profile page (person icon, top-right) -->
-        <a href="profile.html" class="icon-btn" aria-label="Profile">
-            <span class="material-symbols-outlined">person</span>
-        </a>
-
-    </header>
-
-
-    <!-- Page -->
-    <!-- Pavlo - the Welcome section and Call to Action go in here (other team tasks). -->
-    <main class="page-content">
-
-    <!-- Ron Mark - Welcome / Hero Section -->
-
-    <!-- Ron Mark, Using bootstrap template for welcome section -->
-    <section class="px-4 my-5 text-center hero-section">
-        <span id="botImage" class="material-symbols-outlined" >smart_toy</span>
-    <!-- "Title of the web app, using icon as a logo" -->
-        <h1 class="display-5 fw-bold text-body-emphasis">Spot the Bot</h1>
-        <div class="col-lg-6 mx-auto">
-    <!-- Description of the web app taken from github repo -->
-            <p class="lead mb-4">Sharpen media literacy in an age of increasingly convincing AI-generated content, turning a serious skill spotting deepfakes, synthetic text, and AI imagery into a quick, replayable game rather than a lecture.</p>
-            <!-- Pavlo : Ron the Get Started button now sends people to the login page (login.html). -->
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"> <button type="button"
-                    onclick="window.location.href='login.html'"
-                    class="btn btn-primary btn-lg px-4 gap-3">Get Started</button> </div>
-        </div>
-    </section>
-
-    <!-- Added a carousel to the homepage -->
-
-    <h2 class="surveyHeader">How do some people feel about generative AI?</h2>
-    <h3 class="surveyHeader">Check out some survey responses below.</h3>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <div id="testimonialCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                    <!-- container for all carousel slides -->
-                    <div class="carousel-inner">
-                        <!-- first carousel slide that user will see -->
-                        <div class="carousel-item active">
-                            <div class="testimonial-slide">
-                                <span class="material-symbols-outlined">person</span>
-                                <p>"I think AI can be a really useful tool, but it can also potentially cause harm, especially for older generations or people who aren’t very familiar with how AI works. It can be difficult to tell what’s real and what’s AI-generated, which could lead to misinformation and the spread of false news. I think AI is helpful, but we also need to be careful and make sure people know how to recognize and verify the information they see."</p>
-                                <p><strong>Survey Response</strong>, Student at BCIT</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="testimonial-slide">
-                                <span class="material-symbols-outlined">person</span>
-                                <p>"Clutch for school but annoying when trying to enjoy life"</p>
-                                <p><strong>Survey Response</strong>, Anonymous Student</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="testimonial-slide">
-                                <span class="material-symbols-outlined">person</span>
-                                <p>"I think AI is very helpful in every way, can be slightly negative if used inappropriately."</p>
-                                <p><strong>Survey Response</strong>, Anonymous Student</p>
-                            </div>
-                        </div>
-                        <!-- Can add more testimonial items as needed -->
-                    </div>
-                <!-- carousel slide controls -->
-                <div class="text-center">
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                </div>
+    <main class="page wide">
+        <!-- --[ Hero ]-- -->
+        <section class="hero">
+            <img src="images/logo.svg" alt="" class="logo">
+            <h1>Spot the Bot</h1>
+            <p>Sharpen your media literacy in an age of convincing AI. Spotting deepfakes, synthetic text and AI images becomes a quick, replayable game instead of a lecture.</p>
+            <div class="actions">
+                <a href="login.html" class="btn">Get Started <i class="icon">arrow_forward</i></a>
+                <a href="#how" class="btn ghost">How it works</a>
             </div>
-        </div>
+        </section>
+
+        <!-- --[ How it works ]-- -->
+        <section id="how" class="features">
+            <div><i class="icon">image_search</i><h3>Real or AI?</h3><p>Two pictures or texts, one was made by AI. Pick the bot.</p></div>
+            <div><i class="icon">school</i><h3>Learn every round</h3><p>Each answer shows the clues, so you get sharper every time.</p></div>
+            <div><i class="icon">group</i><h3>Play with friends</h3><p>Add friends and chat about what fooled you.</p></div>
+        </section>
+
+        <!-- --[ Survey ]-- -->
+        <section class="stack">
+            <h2 class="center">How do people feel about AI?</h2>
+            <div class="quotes">
+                <figure class="card">
+                    <blockquote>"I think AI can be a really useful tool, but it can also potentially cause harm, especially for older generations or people who aren't very familiar with how AI works. It can be difficult to tell what's real and what's AI-generated, which could lead to misinformation and the spread of false news."</blockquote>
+                    <figcaption>Student at BCIT</figcaption>
+                </figure>
+                <figure class="card">
+                    <blockquote>"Clutch for school but annoying when trying to enjoy life."</blockquote>
+                    <figcaption>Anonymous student</figcaption>
+                </figure>
+                <figure class="card">
+                    <blockquote>"I think AI is very helpful in every way, can be slightly negative if used inappropriately."</blockquote>
+                    <figcaption>Anonymous student</figcaption>
+                </figure>
+            </div>
+        </section>
     </main>
 
-
-    <!-- Bottom navbar -->
-    <!-- Pavlo - this is the bottom part: a round menu button on the left and a round Chat button on the right. -->
-    <nav class="bottom-nav">
-
-        <!-- Pavlo - this hidden checkbox is the "open/closed" switch for the menu.
-             Clicking the round button (the <label> below) ticks it, and the CSS
-             shows the Home / Search / Activities / Add Friend buttons. No JavaScript needed. -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-
-        <!-- Pavlo - this is the round button bottom-left. It opens and closes the menu. -->
-        <label for="menu-toggle" class="circle-btn menu-btn" aria-label="Open menu">
-            <span class="material-symbols-outlined">ads_click</span>
-        </label>
-
-        <!-- Pavlo - these are the 4 buttons that pop out when the menu is open. -->
-        <div class="menu-items">
-
-            <!-- Pavlo - this button leads to the Home page -->
-            <a href="index.html" class="menu-item item-home">
-                <span class="material-symbols-outlined">home</span>
-                Home
-            </a>
-
-            <!-- Pavlo - this button leads to the Search page -->
-            <a href="search.html" class="menu-item item-search">
-                <span class="material-symbols-outlined">search</span>
-                Search
-            </a>
-
-            <!-- Pavlo - this button leads to the Activities page (the AI-or-Real quizzes) -->
-            <a href="activities.html" class="menu-item item-activities">
-                <span class="material-symbols-outlined">sports_esports</span>
-                Activities
-            </a>
-
-            <!-- Pavlo - this button leads to the Add Friend page -->
-            <a href="add-friend.html" class="menu-item item-add-friend">
-                <span class="material-symbols-outlined">person_add</span>
-                Add Friend
-            </a>
-
-        </div>
-
-        <!-- Pavlo - this button leads to the Chat page (round button bottom-right) -->
-        <a href="chat.html" class="circle-btn chat-btn" aria-label="Chat">
-            <span class="material-symbols-outlined">forum</span>
-            <small>Chat</small>
-        </a>
-
-    </nav>
-
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
-    <script type="module" src="./src/main.js"></script>
-
+    <!-- --[ Bottom nav ]-- -->
+    <site-nav></site-nav>
 </body>
-
 </html>
